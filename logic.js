@@ -16,18 +16,18 @@ class Field {
   }
 }
 
-function getFigures(array) {
-  const figures = [];
+function getFigure(array) {
+  const figure = [];
 
   for (let line = 0; line < array.length; line++) {
     for (let column = 0; column < array[line].length; column++) {
       if (array[line][column] === 'p') {
-        figures.push(new Dot(column, line));
+        figure.push(new Dot(column, line));
       }
     }
   }
 
-  return figures;
+  return figure;
 }
 
 function getLandscape(array) {
