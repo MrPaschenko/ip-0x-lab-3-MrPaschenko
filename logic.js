@@ -71,3 +71,34 @@ function move(field) {
   }
   return field;
 }
+
+function getFinalField(field) {
+  for (let i = 0; i < field.height; i++) {
+    field = move(field);
+  }
+  return field;
+}
+
+function getOutput(field) {
+  field = getFinalField(field);
+  const newArray = [];
+  for (let i = 0; i < field.height; i++) {
+    newArray.push([]);
+    for (let k = 0; k < field.width; k++) {
+      newArray[i].push('.');
+    }
+  }
+
+  for (let i = 0; i < field.figure.length; i++) {
+    newArray[field.figure[i].y][field.figure[i].x] = 'p';
+  }
+
+  for (let i = 0; i < field.landscape.length; i++) {
+    newArray[field.landscape[i].y][field.landscape[i].x] = '#';
+  }
+
+  for (let i = 0; i < field.height; i++) {
+    newArray[i] = newArray[i].join('');
+  }
+  return newArray.join('\n');
+}
