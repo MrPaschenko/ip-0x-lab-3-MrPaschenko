@@ -8,10 +8,10 @@ class Dot {
 }
 
 class Field {
-  constructor(width, height, figures, landscape) {
+  constructor(width, height, figure, landscape) {
     this.width = width;
     this.height = height;
-    this.figures = figures;
+    this.figure = figure;
     this.landscape = landscape;
   }
 }
