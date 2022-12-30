@@ -43,3 +43,31 @@ function getLandscape(array) {
 
   return landscape;
 }
+
+function move(field) {
+  let isMovable = true;
+
+  //Check if figure is on landscape
+  for (let i = 0; i < field.figure.length; i++) {
+    for (let k = 0; k < field.landscape.length; k++) {
+      if (field.figure[i].x === field.landscape[k].x &&
+        field.figure[i].y + 1 === field.landscape[k].y) {
+        isMovable = false;
+      }
+    }
+  }
+
+  //Check if figure is outside the field
+  for (let i = 0; i < field.figure.length; i++) {
+    if (field.figure[i].y === field.height - 1) {
+      isMovable = false;
+    }
+  }
+
+  if (isMovable === true) {
+    for (let i = 0; i < field.figure.length; i++) {
+      field.figure[i].y += 1;
+    }
+  }
+  return field;
+}
