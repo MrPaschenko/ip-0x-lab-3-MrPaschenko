@@ -3,6 +3,7 @@
 const fs = require('fs');
 module.exports = {
   input,
+  output,
 };
 
 function input(filePath) {
@@ -18,4 +19,8 @@ function input(filePath) {
     height,
     array,
   };
+}
+
+function output(string) {
+  fs.writeFileSync('output.txt', string);
 }
