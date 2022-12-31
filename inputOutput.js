@@ -29,6 +29,9 @@ function input(filePath) {
     throw new Error('Incorrect height');
   }
   for (const element of array) {
+    if (/^[.p#]*$/.test(element) === false) {
+      throw new Error('Incorrect symbol');
+    }
     if (element.length !== width) {
       throw new Error('Incorrect width');
     }
