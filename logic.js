@@ -102,3 +102,10 @@ function getOutput(field) {
   }
   return newArray.join('\n');
 }
+
+module.exports = {
+  Field,
+  getOutput,
+  getFigure,
+  getLandscape,
+};
