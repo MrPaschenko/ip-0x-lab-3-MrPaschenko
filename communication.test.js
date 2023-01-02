@@ -8,14 +8,7 @@ const fs = require('fs');
 test('No arguments', () => {
   const messages = [];
 
-  //Mock
-  const output = {
-    showResult(msg) {
-      messages.push(msg);
-    }
-  };
-
-  //When
+  //Given
   const fileSystem = {
     checkFile(file) {
       return fs.existsSync(file);
@@ -25,6 +18,15 @@ test('No arguments', () => {
       return fileContent;
     }
   };
+
+  //Mock
+  const output = {
+    showResult(msg) {
+      messages.push(msg);
+    }
+  };
+
+  //When
   execute(null, fileSystem, output);
 
   //Then
