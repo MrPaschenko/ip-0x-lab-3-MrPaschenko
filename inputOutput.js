@@ -2,12 +2,11 @@
 
 const fs = require('fs');
 module.exports = {
-  input,
-  output,
+  parseInput,
+  writeOutput,
 };
 
-function input(filePath) {
-  const string = fs.readFileSync(filePath, 'utf8');
+function parseInput(string) {
   const generalArray = string.split('\n');
 
   if (/^\d+ \d+$/.test(generalArray[0]) === false) {
@@ -44,6 +43,6 @@ function input(filePath) {
   };
 }
 
-function output(string) {
+function writeOutput(string) {
   fs.writeFileSync('output.txt', string);
 }

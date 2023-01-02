@@ -1,23 +1,76 @@
 'use strict';
 
-const {
-  Field,
-  getOutput,
-  getFigure,
-  getLandscape,
-} = require('./logic');
+const fs = require('fs');
 
-const {
-  input,
-  output,
-} = require('./inputOutput');
+const { getOutput, Field, getFigure, getLandscape } = require('./logic');
+const { writeOutput, parseInput } = require('./inputOutput');
+const args = process.argv;
 
-const rawField = input('./input.txt');
-const field = new Field(
-  rawField.width,
-  rawField.height,
-  getFigure(rawField.array),
-  getLandscape(rawField.array)
-);
+function execute(args, fileSystem, output) {
+  const regEx = /^.+\.txt$/;
+  if (!args) {
+    output.showResult('Run communication.js together with .txt file name');
+    return;
+  }
 
-output(getOutput(field));
+  if (!regEx.test(args)) {
+    output.showResult('Enter only .txt file name');
+    return;
+  }
+
+  if (!fileSystem.checkFile(args)) {
+    output.showResult('File does not exist');
+    return;
+  }
+
+  const fileContent = fileSystem.readFile(args);
+  let isError = false;
+  let parsedContent;
+  try {
+    parsedContent = parseInput(fileContent);
+  } catch (e) {
+    isError = e.description;
+  }
+
+  if (isError) {
+    output.showResult(isError);
+  } else {
+    const field = new Field(
+      parsedContent.width,
+      parsedContent.height,
+      getFigure(parsedContent.array),
+      getLandscape(parsedContent.array)
+    );
+
+    const finalFieldString = getOutput(field);
+
+    output.showResult(finalFieldString);
+    writeOutput(finalFieldString);
+  }
+}
+
+function main(args) {
+  const fileSystem = {
+    checkFile(file) {
+      return fs.existsSync(file);
+    },
+    readFile(fileName) {
+      const fileContent = fs.readFileSync((fileName), 'utf-8');
+      return fileContent;
+    }
+  };
+
+  const output = {
+    showResult(msg) {
+      console.log(msg);
+    }
+  };
+
+  execute(args[2], fileSystem, output);
+}
+
+main(args);
+
+module.exports = {
+  execute
+};
