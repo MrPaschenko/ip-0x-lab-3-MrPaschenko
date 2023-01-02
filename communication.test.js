@@ -5,30 +5,46 @@ const {
 } = require('./communication');
 const fs = require('fs');
 
-test('No arguments', () => {
-  const messages = [];
+let messages = [];
+const outputMock = {
+  showResult(msg) {
+    messages.push(msg);
+  }
+};
 
-  //Given
-  const fileSystem = {
-    checkFile(file) {
-      return fs.existsSync(file);
-    },
-    readFile(fileName) {
-      const fileContent = fs.readFileSync((fileName), 'utf-8');
-      return fileContent;
-    }
-  };
+const fileSystemDefaultMock = {
+  checkFile(file) {
+    throw new Error('checkFile() has been called unexpectedly');
+  },
+  readFile(fileName) {
+    throw new Error('readFile() has been called unexpectedly');
+  }
+};
+
+test('No arguments', () => {
+  //When
+  execute(null, fileSystemDefaultMock, outputMock);
+
+  //Then
+  expect(messages).toEqual(['Run communication.js together with .txt file name']);
+});
+
+test('File does not exist', () => {
+  messages = [];
 
   //Mock
-  const output = {
-    showResult(msg) {
-      messages.push(msg);
+  const fileSystemMock = {
+    checkFile(file) {
+      return false;
+    },
+    readFile(fileName) {
+      throw new Error('readFile() has been called unexpectedly');
     }
   };
 
   //When
-  execute(null, fileSystem, output);
+  execute(['', '', '123.txt'], fileSystemMock, outputMock);
 
   //Then
-  expect(messages).toEqual(['Run communication.js together with .txt file name']);
+  expect(messages).toEqual(['File does not exist']);
 });
