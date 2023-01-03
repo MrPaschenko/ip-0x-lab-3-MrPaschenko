@@ -55,8 +55,7 @@ function main(args) {
       return fs.existsSync(filePath);
     },
     readFile(filePath) {
-      const fileContent = fs.readFileSync((filePath), 'utf-8');
-      return fileContent;
+      return fs.readFileSync((filePath), 'utf-8');
     }
   };
 
@@ -71,6 +70,4 @@ function main(args) {
 
 main(args);
 
-module.exports = {
-  execute
-};
+module.exports = { execute };
