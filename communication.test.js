@@ -21,6 +21,10 @@ const fileSystemDefaultMock = {
   }
 };
 
+beforeEach(() => {
+  messages = [];
+});
+
 test('No arguments', () => {
   //When
   execute(null, fileSystemDefaultMock, outputMock);
@@ -30,8 +34,6 @@ test('No arguments', () => {
 });
 
 test('File does not exist', () => {
-  messages = [];
-
   //Mock
   const fileSystemMock = {
     checkFile(filePath) {
