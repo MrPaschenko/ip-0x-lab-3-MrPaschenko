@@ -103,4 +103,4 @@ function getOutput(field) {
   return newArray.join('\n');
 }
 
-module.exports = { Dot, Field, getOutput, getFigure, getLandscape };
+module.exports = { Dot, Field, getFigure, getLandscape, move, getFinalField, getOutput };
