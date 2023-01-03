@@ -89,3 +89,43 @@ test('Test move', () => {
 
   expect(move(field)).toEqual(expectedField);
 });
+
+test('Test getFinalField', () => {
+  const field = new Field(8, 7, [
+    new Dot(2, 0),
+    new Dot(1, 1),
+    new Dot(2, 1),
+    new Dot(3, 1),
+    new Dot(2, 2)
+  ], [
+    new Dot(3, 4),
+    new Dot(3, 5),
+    new Dot(7, 5),
+    new Dot(0, 6),
+    new Dot(3, 6),
+    new Dot(4, 6),
+    new Dot(5, 6),
+    new Dot(6, 6),
+    new Dot(7, 6)
+  ]);
+
+  const expectedField = new Field(8, 7, [
+    new Dot(2, 2),
+    new Dot(1, 3),
+    new Dot(2, 3),
+    new Dot(3, 3),
+    new Dot(2, 4)
+  ], [
+    new Dot(3, 4),
+    new Dot(3, 5),
+    new Dot(7, 5),
+    new Dot(0, 6),
+    new Dot(3, 6),
+    new Dot(4, 6),
+    new Dot(5, 6),
+    new Dot(6, 6),
+    new Dot(7, 6)
+  ]);
+
+  expect(getFinalField(field)).toEqual(expectedField);
+});
