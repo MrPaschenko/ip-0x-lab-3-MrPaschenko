@@ -67,5 +67,35 @@ test('Wrong input file', () => {
 
   //Then
   expect(messages).toEqual(['Incorrect size']);
+});
 
+test('Final field', () => {
+  //Mock
+  const fileSystemMock = {
+    checkFile(filePath) {
+      return true;
+    },
+    readFile(filePath) {
+      return '7 8\n' +
+        '..p.....\n' +
+        '.ppp....\n' +
+        '..p.....\n' +
+        '........\n' +
+        '...#....\n' +
+        '...#...#\n' +
+        '#..#####';
+    }
+  };
+
+  //When
+  execute(['', '', 'input.txt'], fileSystemMock, outputMock);
+
+  //Then
+  expect(messages).toEqual(['........\n' +
+  '........\n' +
+  '..p.....\n' +
+  '.ppp....\n' +
+  '..p#....\n' +
+  '...#...#\n' +
+  '#..#####']);
 });
