@@ -1,10 +1,6 @@
 'use strict';
 
 const fs = require('fs');
-module.exports = {
-  parseInput,
-  writeOutput,
-};
 
 function parseInput(string) {
   const generalArray = string.split('\n');
@@ -46,3 +42,5 @@ function parseInput(string) {
 function writeOutput(string) {
   fs.writeFileSync('output.txt', string);
 }
+
+module.exports = { parseInput, writeOutput };
