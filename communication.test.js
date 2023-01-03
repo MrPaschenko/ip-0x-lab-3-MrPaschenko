@@ -50,3 +50,22 @@ test('File does not exist', () => {
   //Then
   expect(messages).toEqual(['File does not exist']);
 });
+
+test('Wrong input file', () => {
+  //Mock
+  const fileSystemMock = {
+    checkFile(filePath) {
+      return true;
+    },
+    readFile(filePath) {
+      return 'Wrong input file body';
+    }
+  };
+
+  //When
+  execute(['', '', 'input.txt'], fileSystemMock, outputMock);
+
+  //Then
+  expect(messages).toEqual(['Incorrect size']);
+
+});
