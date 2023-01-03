@@ -19,3 +19,25 @@ test('Test getFigure', () => {
     new Dot(2, 2)
   ]);
 });
+
+test('Test getLandscape', () => {
+  expect(getLandscape([
+    '..p.....',
+    '.ppp....',
+    '..p.....',
+    '........',
+    '...#....',
+    '...#...#',
+    '#..#####'
+  ])).toEqual([
+    new Dot(3, 4),
+    new Dot(3, 5),
+    new Dot(7, 5),
+    new Dot(0, 6),
+    new Dot(3, 6),
+    new Dot(4, 6),
+    new Dot(5, 6),
+    new Dot(6, 6),
+    new Dot(7, 6),
+  ]);
+});
