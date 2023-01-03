@@ -91,3 +91,22 @@ test('Wrong width', () => {
 
   expect(error).toEqual('Incorrect width');
 });
+
+test('Wrong symbol', () => {
+  const fileContent = '6 8\n' +
+    '..p.....\n' +
+    '.ppp....\n' +
+    '..pp....\n' +
+    '...p..#.\n' +
+    '.x....#.\n' +
+    '...#..##';
+
+  let error = '';
+  try {
+    parseInput(fileContent);
+  } catch (e) {
+    error = e.message;
+  }
+
+  expect(error).toEqual('Incorrect symbol');
+});
