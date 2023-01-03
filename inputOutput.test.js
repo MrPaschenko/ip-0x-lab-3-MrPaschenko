@@ -54,3 +54,21 @@ test('Parse input (2)', () => {
   expect(parseInput(fileContent)).toEqual(expectedOutput);
 });
 
+test('Wrong height', () => {
+  const fileContent = '9 8\n' +
+    '..p.....\n' +
+    '.ppp....\n' +
+    '..pp....\n' +
+    '...p..#.\n' +
+    '......#.\n' +
+    '...#..##';
+
+  let error = '';
+  try {
+    parseInput(fileContent);
+  } catch (e) {
+    error = e.message;
+  }
+
+  expect(error).toEqual('Incorrect height');
+});
