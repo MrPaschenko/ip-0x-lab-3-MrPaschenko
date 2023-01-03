@@ -29,7 +29,7 @@ function execute(args, fileSystem, output) {
   try {
     parsedContent = parseInput(fileContent);
   } catch (e) {
-    isError = e.description;
+    isError = e.message;
   }
 
   if (isError) {
