@@ -72,3 +72,22 @@ test('Wrong height', () => {
 
   expect(error).toEqual('Incorrect height');
 });
+
+test('Wrong width', () => {
+  const fileContent = '6 7\n' +
+    '..p.....\n' +
+    '.ppp....\n' +
+    '..pp....\n' +
+    '...p..#.\n' +
+    '......#.\n' +
+    '...#..##';
+
+  let error = '';
+  try {
+    parseInput(fileContent);
+  } catch (e) {
+    error = e.message;
+  }
+
+  expect(error).toEqual('Incorrect width');
+});
