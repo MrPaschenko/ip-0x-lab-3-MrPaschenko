@@ -51,11 +51,11 @@ function execute(args, fileSystem, output) {
 
 function main(args) {
   const fileSystem = {
-    checkFile(file) {
-      return fs.existsSync(file);
+    checkFile(filePath) {
+      return fs.existsSync(filePath);
     },
-    readFile(fileName) {
-      const fileContent = fs.readFileSync((fileName), 'utf-8');
+    readFile(filePath) {
+      const fileContent = fs.readFileSync((filePath), 'utf-8');
       return fileContent;
     }
   };

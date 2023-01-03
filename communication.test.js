@@ -13,10 +13,10 @@ const outputMock = {
 };
 
 const fileSystemDefaultMock = {
-  checkFile(file) {
+  checkFile(filePath) {
     throw new Error('checkFile() has been called unexpectedly');
   },
-  readFile(fileName) {
+  readFile(filePath) {
     throw new Error('readFile() has been called unexpectedly');
   }
 };
@@ -34,10 +34,10 @@ test('File does not exist', () => {
 
   //Mock
   const fileSystemMock = {
-    checkFile(file) {
+    checkFile(filePath) {
       return false;
     },
-    readFile(fileName) {
+    readFile(filePath) {
       throw new Error('readFile() has been called unexpectedly');
     }
   };
