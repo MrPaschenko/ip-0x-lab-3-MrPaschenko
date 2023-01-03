@@ -1,9 +1,6 @@
 'use strict';
 
-const {
-  execute
-} = require('./communication');
-const fs = require('fs');
+const { execute } = require('./communication');
 
 let messages = [];
 const outputMock = {
