@@ -4,7 +4,6 @@ const fs = require('fs');
 
 const { getOutput, Field, getFigure, getLandscape } = require('./logic');
 const { writeOutput, parseInput } = require('./inputOutput');
-const args = process.argv;
 
 function execute(args, fileSystem, output) {
   const regEx = /^.+\.txt$/;
@@ -49,25 +48,21 @@ function execute(args, fileSystem, output) {
   }
 }
 
-function main(args) {
-  const fileSystem = {
-    checkFile(filePath) {
-      return fs.existsSync(filePath);
-    },
-    readFile(filePath) {
-      return fs.readFileSync((filePath), 'utf-8');
-    }
-  };
+const fileSystem = {
+  checkFile(filePath) {
+    return fs.existsSync(filePath);
+  },
+  readFile(filePath) {
+    return fs.readFileSync((filePath), 'utf-8');
+  }
+};
 
-  const output = {
-    showResult(msg) {
-      console.log(msg);
-    }
-  };
+const output = {
+  showResult(msg) {
+    console.log(msg);
+  }
+};
 
-  execute(args[2], fileSystem, output);
-}
-
-main(args);
+execute(process.argv[2], fileSystem, output);
 
 module.exports = { execute };
